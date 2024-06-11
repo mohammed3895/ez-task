@@ -7,6 +7,7 @@ import { Form, FormControl, FormField, FormItem } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { handleDelete } from "../groups/GroupCard";
 
 const GroupsDetailsPage = () => {
   const [editGroup, setEditGroup] = useState(false);
@@ -32,6 +33,7 @@ const GroupsDetailsPage = () => {
     setEditGroup(false);
   };
 
+  // Edit group Shcema
   const schema = z.object({
     name: z.string().min(1),
   });
@@ -42,6 +44,10 @@ const GroupsDetailsPage = () => {
       name: group?.name,
     },
   });
+
+  if (!group) {
+    return <div>Group not found</div>;
+  }
 
   return (
     <div className="flex flex-col items-center w-full h-full p-4 md:p-8">
@@ -111,6 +117,13 @@ const GroupsDetailsPage = () => {
           </div>
         </div>
       </div>
+      <Button
+        onClick={() => handleDelete(Number(id))}
+        variant="destructive"
+        className="mt-4 w-20"
+      >
+        Delete
+      </Button>
     </div>
   );
 };

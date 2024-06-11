@@ -7,7 +7,7 @@ interface GroupCardProps {
   group: (typeof GROUPS)[number];
 }
 
-export function handleDelete(id: number) {
+export const handleDelete = (id: number) => {
   const groups = localStorage.getItem("groups");
   const parsedGroups = groups ? JSON.parse(groups) : [];
   const groupToDelete = parsedGroups.find((el: { id: number }) => el.id === id);
@@ -20,7 +20,8 @@ export function handleDelete(id: number) {
 
   // Save new array to local storage
   localStorage.setItem("groups", JSON.stringify(parsedGroups));
-}
+  window.location.href = "/";
+};
 
 const GroupCard = ({ group }: GroupCardProps) => {
   return (
