@@ -55,7 +55,7 @@ const GroupForm = () => {
                 <div className="relative w-full">
                   <Input
                     type="text"
-                    placeholder="Ex: john@example.com"
+                    placeholder="Group name here"
                     {...field}
                     className="relative"
                   />
