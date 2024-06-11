@@ -103,7 +103,7 @@ const GroupsDetailsPage = () => {
 
         <div className="flex flex-col gap-2 justify-center">
           <div className="flex gap-2 text-nowrap items-center">
-            <h1 className="text-sm font-bold ">Members - </h1>
+            <h1 className="text-sm font-bold ">Members: </h1>
             <p className="text-sm font-bold text-primary">
               {group?.members.length === 0
                 ? "No members"
@@ -111,7 +111,7 @@ const GroupsDetailsPage = () => {
             </p>
           </div>
           <div className="flex gap-2 text-nowrap items-center">
-            <h1 className="text-sm font-bold ">Created at </h1>
+            <h1 className="text-sm font-bold ">Created at: </h1>
             <p className="text-sm font-bold text-primary">
               {moment(group?.createdAt).format("DD MMM YYYY")}
             </p>
