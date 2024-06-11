@@ -8,8 +8,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { handleDelete } from "../groups/GroupCard";
+import { useToast } from "../ui/use-toast";
 
 const GroupsDetailsPage = () => {
+  const { toast } = useToast();
   const [editGroup, setEditGroup] = useState(false);
 
   const { id } = useParams();
@@ -54,12 +56,18 @@ const GroupsDetailsPage = () => {
     <div className="flex flex-col items-center w-full h-full p-4 md:p-8">
       <div className="w-full h-full p-4 rounded-lg flex max-w-[500px] border">
         <div className="w-full h-full flex gap-2">
-          <div className="w-20 h-20 rounded-md">
-            <img
-              src={group?.image}
-              alt={group?.name}
-              className="w-full h-full object-cover rounded-md"
-            />
+          <div className="w-20 h-20 rounded-md bg-accent flex items-center justify-center">
+            {group.image ? (
+              <img
+                src={group?.image}
+                alt={group?.name}
+                className="w-full h-full object-cover rounded-md"
+              />
+            ) : (
+              <span className="text-xl font-medium text-muted-foreground">
+                G
+              </span>
+            )}
           </div>
           <div className="flex flex-col items-start justify-center">
             {editGroup ? (
@@ -119,7 +127,12 @@ const GroupsDetailsPage = () => {
         </div>
       </div>
       <Button
-        onClick={() => handleDelete(Number(id))}
+        onClick={() => {
+          handleDelete(Number(id));
+          toast({
+            title: `The Group ${group.name} Deleted`,
+          });
+        }}
         variant="destructive"
         className="mt-4 w-20"
       >

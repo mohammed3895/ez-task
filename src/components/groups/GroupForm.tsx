@@ -12,8 +12,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { GROUPS } from "@/data/groups";
 import { createFormSchema } from "@/lib/validation/create-group-schema";
+import { useToast } from "../ui/use-toast";
 
 const GroupForm = () => {
+  const { toast } = useToast();
   // DEFINE GROUP CREATION FORM AND FEILDS
   const form = useForm<z.infer<typeof createFormSchema>>({
     resolver: zodResolver(createFormSchema),
@@ -42,6 +44,9 @@ const GroupForm = () => {
     const newGroup = parsedGroups.concat(groupObj);
 
     localStorage.setItem("groups", JSON.stringify(newGroup));
+    toast({
+      title: `${groupObj.name} Created Succesfuly`,
+    });
     form.reset();
   };
 
