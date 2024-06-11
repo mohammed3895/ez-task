@@ -27,6 +27,7 @@ const GroupCard = ({ group }: GroupCardProps) => {
   return (
     <div className="w-full p-4 rounded-md border">
       <div className="flex items-start justify-start gap-2">
+        {/* GROUP IMAGE */}
         <div className="w-9 h-9 min-w-9 rounded-md">
           <img
             src={group.image}
@@ -34,6 +35,7 @@ const GroupCard = ({ group }: GroupCardProps) => {
             className="w-full h-full object-cover rounded-md"
           />
         </div>
+        {/* NAME & DESCRIPTION */}
         <div className="w-full flex flex-col items-start justify-start">
           <h1 className="text-sm font-medium capitalize">{group.name}</h1>
           <p className="text-xs font-normal text-muted-foreground capitalize">

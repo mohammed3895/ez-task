@@ -14,6 +14,7 @@ import { GROUPS } from "@/data/groups";
 import { createFormSchema } from "@/lib/validation/create-group-schema";
 
 const GroupForm = () => {
+  // DEFINE GROUP CREATION FORM AND FEILDS
   const form = useForm<z.infer<typeof createFormSchema>>({
     resolver: zodResolver(createFormSchema),
     defaultValues: {
@@ -24,6 +25,7 @@ const GroupForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof createFormSchema>) => {
+    // THE RETURNED OBJECT FROM THE FORM
     const groupObj = {
       id: GROUPS.length + 1,
       name: values.name,
@@ -34,6 +36,7 @@ const GroupForm = () => {
       posts: [],
     };
 
+    // SAVE NEW GROUPS ARRAY TO LOCAL STORAGE
     const groups = localStorage.getItem("groups");
     const parsedGroups = groups ? JSON.parse(groups) : [];
     const newGroup = parsedGroups.concat(groupObj);

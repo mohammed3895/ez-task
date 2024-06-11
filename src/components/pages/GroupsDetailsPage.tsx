@@ -20,7 +20,7 @@ const GroupsDetailsPage = () => {
 
   const handleNameChange = (values: z.infer<typeof schema>) => {
     const updatedName = values.name;
-    // Assuming you want to update the group's name in the parsedGroups array
+    // MAPPING THE GROUPS ARRAY TO EDIT NAME FOR SPECIFIC OBJECT
     const updatedGroups = parsedGroups.map(
       (g: { id: number; name: string }) => {
         if (g.id === Number(id)) {
@@ -33,11 +33,12 @@ const GroupsDetailsPage = () => {
     setEditGroup(false);
   };
 
-  // Edit group Shcema
+  // EDIT GROUP SHCEMA
   const schema = z.object({
     name: z.string().min(1),
   });
 
+  // DEFINE THE SCHEMA FOR EDIT FIELDS
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {

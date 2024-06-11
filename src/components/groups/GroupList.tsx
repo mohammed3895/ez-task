@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 
 const GroupList = () => {
   const [groups, setGroups] = useState([]);
+
+  // TRIGGER GROUPS STATE TO RERENDER WITH EVERY CHANGE
   useEffect(() => {
     const storedGroups = localStorage.getItem("groups");
     if (storedGroups) {
@@ -10,6 +12,7 @@ const GroupList = () => {
     }
   }, [groups]);
 
+  // RETURN MESSAGE TO USER IF NO GROUPS
   if (groups.length === 0) {
     return (
       <div className="w-full py-4 mt-5 flex items-center justify-center">
