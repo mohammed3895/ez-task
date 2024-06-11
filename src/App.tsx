@@ -13,6 +13,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/groups" element={<GroupsPage />} />
           <Route path="/groups/:id" element={<GroupsDetailsPage />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
